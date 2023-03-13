@@ -24,7 +24,6 @@ namespace sfml_game
             RenderWindow window = new RenderWindow(mode, "Window");
             window.Closed += (sender, args) => window.Close();
             RectangleShape shape = new RectangleShape(new Vector2f(1, 1));
-            //shape.Size = new Vector2f(102, 234);
 
             while (window.IsOpen)
             {
