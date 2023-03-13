@@ -22,6 +22,18 @@ namespace sfml_game
 
             VideoMode mode = new VideoMode(800, 800);
             RenderWindow window = new RenderWindow(mode, "Window");
+            window.Closed += (sender, args) => window.Close();
+            RectangleShape shape = new RectangleShape(new Vector2f(1, 1));
+            //shape.Size = new Vector2f(102, 234);
+
+            while (window.IsOpen)
+            {
+                window.DispatchEvents();
+                window.Clear(Color.Blue);
+                window.Draw(shape);
+
+                window.Display();
+            }   
 
 
         }
