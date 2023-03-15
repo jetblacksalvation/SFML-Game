@@ -9,10 +9,6 @@ namespace sfml_game
 {
     class Program
     {
-        enum DIRECTIONS
-        {
-            UP, DOWN, LEFT, RIGHT
-        };
         static bool[] keys;
         static void Main(string[] args)
         {
@@ -22,7 +18,11 @@ namespace sfml_game
 
             VideoMode mode = new VideoMode(800, 800);
             RenderWindow window = new RenderWindow(mode, "Window");
-            window.Closed += (sender, args) => window.Close();
+
+
+            //KeyEvent keyEvent += Keyboard.IsKeyPressed(Keyboard.Key.A) => window.Close();
+            //window.KeyPressed += OnKeyPressed() => Console.WriteLine("hello");
+
             RectangleShape shape = new RectangleShape(new Vector2f(1, 1));
 
             while (window.IsOpen)
@@ -37,14 +37,9 @@ namespace sfml_game
 
         }
 
-        public void keyHandler()
+        private static void Window_KeyPressed(object sender, KeyEventArgs e)
         {
-            keys[(int)(DIRECTIONS.UP)] = Keyboard.IsKeyPressed(Keyboard.Key.A);
-            keys[(int)(DIRECTIONS.DOWN)] = Keyboard.IsKeyPressed(Keyboard.Key.S);
-            keys[(int)(DIRECTIONS.RIGHT)] = Keyboard.IsKeyPressed(Keyboard.Key.D);
-            keys[(int)(DIRECTIONS.LEFT)] = Keyboard.IsKeyPressed(Keyboard.Key.D);
-            bool isMove = keys[(int)(DIRECTIONS.LEFT)] || keys[(int)(DIRECTIONS.RIGHT)] || keys[(int)(DIRECTIONS.DOWN)] || keys[(int)(DIRECTIONS.UP)];
-
+            throw new NotImplementedException();
         }
     }
 }
