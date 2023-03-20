@@ -10,36 +10,66 @@ namespace sfml_game
     class Program
     {
         static bool[] keys;
+        static VideoMode mode = new VideoMode(800, 800);
+        static RenderWindow window = new RenderWindow(mode, "Window");
+
+        static RectangleShape shape = new RectangleShape(new Vector2f(10, 10));
+        static bool[,] CellGrid = new bool[800,800];
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
 
-            keys = new bool[4] { false, false, false, false };
 
-            VideoMode mode = new VideoMode(800, 800);
-            RenderWindow window = new RenderWindow(mode, "Window");
+            window.KeyPressed += (args, eve) => 
+            {
+                if (eve.Code == Keyboard.Key.Escape)
+                {
+                    window.Close();
+                }
 
-
-            //KeyEvent keyEvent += Keyboard.IsKeyPressed(Keyboard.Key.A) => window.Close();
+            };
             //window.KeyPressed += OnKeyPressed() => Console.WriteLine("hello");
 
-            RectangleShape shape = new RectangleShape(new Vector2f(1, 1));
+
+
+            shape.FillColor = Color.Black;
+            shape.OutlineThickness = 1;
+            shape.OutlineColor = Color.White;
+
+            bool[,] CellGrid = new bool[800,800];
+
 
             while (window.IsOpen)
             {
-                window.DispatchEvents();
-                window.Clear(Color.Blue);
-                window.Draw(shape);
-
+                PositionChecker();
                 window.Display();
+
+                window.Clear();
+               
             }   
 
 
         }
-
-        private static void Window_KeyPressed(object sender, KeyEventArgs e)
+        static private void PositionChecker()
         {
-            throw new NotImplementedException();
+            for (int x = 0; x < 800; x += 10)
+            {
+                for (int y = 0; y < 800; y += 10)
+                {
+                    if (CellGrid[x, y])
+                    {
+                        if ((x > 0 && x<800) && (y>0 && y<800))
+                        {
+                            //must have a neighbor left or right
+                        }
+
+                    }
+                        shape.Position = new(x, y);
+                    window.Draw(shape);
+
+                }
+            }
         }
+
     }
 }
